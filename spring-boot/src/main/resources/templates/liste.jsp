@@ -50,45 +50,66 @@ th, td {
 }
 
 
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #555555;
-}
-
-li {
-	float: left;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover:not(.active) {
-	background-color: #111;
-}
-
+ ul {
+        padding: 0;
+        list-style: none;
+        background: #666666;
+    }
+    ul li {
+        display: inline-block;
+        position: relative;
+        line-height: 21px;
+        text-align: left;
+    }
+    ul li a {
+        display: block;
+        padding: 8px 25px;
+        color: white;
+        text-decoration: none;
+    }
+    ul li a:hover {
+        color: #fff;
+        background: #939393;
+    }
+    ul li ul.dropdown {
+        min-width: 100%; /* Set width of the dropdown */
+        background: #black;
+        display: none;
+        position: absolute;
+        z-index: 999;
+        left: 0;
+    }
+    ul li:hover ul.dropdown {
+        display: block; /* Display the dropdown */
+    }
+    ul li ul.dropdown li {
+        display: block;
+    }
 .active {
 	background-color: #7F7D7D;
 }
 </style>
 </head>
 <body>
-	<ul>
-
-		<li><a  href="/">Kayıt</a></li>
-
-
-		<li><a class="active" href="">Liste</a></li>
-
-
-	</ul>
+<ul>
+        
+        <li>
+            <a href="/">Kayıt ▾</a>
+            <ul class="dropdown">
+                <li><a href="kullanıcı">Kişi Kaydı</a></li>
+                <li><a href="araba">Araba kaydı</a></li>
+                <li><a href="house">Konut Kaydı</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Listeler</a>
+        <ul class="dropdown">
+                <li><a href="kullanıcıliste">Kişi Listesi</a></li>
+                <li><a href="arabaliste">Araba Listesi</a></li>
+                <li><a href="konutliste">Konut Listesi</a></li>
+            </ul>
+        </li>
+        <li><a href="arabasigorta">Araba Sigortası</a></li>
+    </ul>
 	
 	<div class="container">
 		<div class="col-lg-12 col-md-12 col-xs-12">
@@ -103,9 +124,7 @@ li a:hover:not(.active) {
 							<th style="width: 100px;">TC</th>
 							<th style="width: 100px;">Telefon Numarası</th>
 							<th style="width: 100px;">Cinsiyet</th>
-							<th style="width: 100px;">Sigorta Çeşidi</th>
 							<th style="width: 100px;">Tarih</th>
-							<th style="width: 100px;">Son Tarih</th>
 
 						</tr>
 					</thead>
@@ -116,9 +135,7 @@ li a:hover:not(.active) {
 							<td th:text="${user.tc}"></td>
 							<td th:text="${user.phoneNumber}"></td>
 							<td th:text="${user.gender}"></td>
-							<td th:text="${user.insuranceType}"></td>
 							<td th:text="${user.date}"></td>
-							<td th:text="${user.lastdate}"></td>
 
 						</tr>
 
