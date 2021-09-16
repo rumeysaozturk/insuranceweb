@@ -11,7 +11,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int userId;
 	 @Column(nullable = false,length = 45)
 	private String name;
 	
@@ -23,21 +23,10 @@ public class User {
 	private String phoneNumber;
 	 @Column(nullable = false,length = 1)
 	private char gender;
-	 @Column(nullable = false,  length = 45)
-	private String insuranceType;
 	 @Column(nullable = false)
 	private Date date;
-	 @Column
-	 private Date lastdate;
 	 
-	 public Date getLastdate() {
-		return lastdate;
-	}
-
-	public void setLastdate(Date lastdate) {
-		this.lastdate=lastdate;
-
-	}
+	
 	 
 	public String getTc() {
 			return tc;
@@ -50,12 +39,12 @@ public class User {
 	
 
 	
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -90,13 +79,7 @@ public class User {
 		this.gender = gender;
 	}
 
-	public String getInsuranceType() {
-		return insuranceType;
-	}
 
-	public void setInsuranceType(String insuranceType) {
-		this.insuranceType = insuranceType;
-	}
 
 	public Date getDate() {
 		return date;
