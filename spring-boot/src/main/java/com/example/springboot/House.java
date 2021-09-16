@@ -13,9 +13,7 @@ public class House {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
-	@Column(nullable = false, length = 11)
-	public String tc;
+	public int houseId;
 	@Column(nullable = false, length = 50)
 	public String neighborhood;
 	@Column(nullable = false, length = 50)
@@ -28,6 +26,8 @@ public class House {
 	public String town;
 	@Column(nullable = false, length =30 )
 	public String city;
+	@Column(nullable=false)
+	public int year;
 
 	public String getTown() {
 		return town;
@@ -37,21 +37,15 @@ public class House {
 		this.town = town;
 	}
 
-	public int getId() {
-		return id;
+	public int getHouseId() {
+		return houseId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setHouseId(int houseId) {
+		this.houseId = houseId;
 	}
 
-	public String getTc() {
-		return tc;
-	}
 
-	public void setTc(String tc) {
-		this.tc = tc;
-	}
 
 	public String getNeighborhood() {
 		return neighborhood;
@@ -91,6 +85,14 @@ public class House {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 }
