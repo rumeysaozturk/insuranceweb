@@ -1,5 +1,6 @@
 package com.example.springboot;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,24 +13,25 @@ import javax.persistence.Table;
 public class Car {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(nullable = false, length = 11)
-	private String tc;
+	public int carId;
 	@Column(nullable = false, length = 10)
-	private String plaque;
+	public String plaque;
 	@Column(nullable = false, length = 30)
-	private String brand;
+	public String brand;
 	@Column(nullable = false, length = 30)
-	private String model;
+	public String model;
 	@Column(nullable = false)
-	private Long year;
+	public Long year;
+	@Column(nullable=false)
+	public char accident;
+	
 
-	public int getId() {
-		return id;
+	public int getCarId() {
+		return carId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCarId(int carId) {
+		this.carId = carId;
 	}
 
 	public String getPlaque() {
@@ -40,13 +42,7 @@ public class Car {
 		this.plaque = plaque;
 	}
 
-	public String getTc() {
-		return tc;
-	}
-
-	public void setTc(String tc) {
-		this.tc = tc;
-	}
+	
 
 	public String getBrand() {
 		return brand;
@@ -71,4 +67,14 @@ public class Car {
 	public void setYear(Long year) {
 		this.year = year;
 	}
+
+	public char getAccident() {
+		return accident;
+	}
+
+	public void setAccident(char accident) {
+		this.accident = accident;
+	}
+	
+	
 }
