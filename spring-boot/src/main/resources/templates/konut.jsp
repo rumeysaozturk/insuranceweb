@@ -18,10 +18,12 @@ body {
 	background-color: #ffffff;
 	font-family: 'Open Sans', sans-serif;
 }
- select{
-      width:45%;
-      box-sizing:border-box;
-    }
+
+select {
+	width: 45%;
+	box-sizing: border-box;
+}
+
 .baslik {
 	text-align: center;
 	padding: 30px;
@@ -66,29 +68,42 @@ body {
 	color: white;
 }
 
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #555555;
-}
 
-li {
-	float: left;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover:not(.active) {
-	background-color: #111;
-}
+ ul {
+        padding: 0;
+        list-style: none;
+        background: #666666;
+    }
+    ul li {
+        display: inline-block;
+        position: relative;
+        line-height: 21px;
+        text-align: left;
+    }
+    ul li a {
+        display: block;
+        padding: 8px 25px;
+        color: white;
+        text-decoration: none;
+    }
+    ul li a:hover {
+        color: #fff;
+        background: #939393;
+    }
+    ul li ul.dropdown {
+        min-width: 100%; /* Set width of the dropdown */
+        background: #black;
+        display: none;
+        position: absolute;
+        z-index: 999;
+        left: 0;
+    }
+    ul li:hover ul.dropdown {
+        display: block; /* Display the dropdown */
+    }
+    ul li ul.dropdown li {
+        display: block;
+    }
 
 .active {
 	background-color: #7F7D7D;
@@ -99,46 +114,58 @@ li a:hover:not(.active) {
 
 	<div class="container">
 		<ul>
-
-			<li><a class="active" href="">Kayıt</a></li>
-
-
-			<li><a href="liste">Liste</a></li>
-
-
-		</ul>
+        
+        <li>
+            <a href="/">Kayıt ▾</a>
+            <ul class="dropdown">
+                <li><a href="kullanıcı">Kişi Kaydı</a></li>
+                <li><a href="araba">Araba kaydı</a></li>
+                <li><a href="house">Konut Kaydı</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Listeler</a>
+        <ul class="dropdown">
+                <li><a href="kullanıcıliste">Kişi Listesi</a></li>
+                <li><a href="arabaliste">Araba Listesi</a></li>
+                <li><a href="konutliste">Konut Listesi</a></li>
+            </ul>
+        </li>
+        <li><a href="arabasigorta">Araba Sigortası</a></li>
+    </ul>
 		<div class="col-lg-12 col-md-12 col-xs-12">
 			<div class="row">
 				<div class="kayıt" style="text-align: center;">
-					<h2 class="baslik">Yeni Kayıt</h2>
-					<form th:action="@{/addHouse}" th:object="${house}"
-						method="post">
+					<h2 class="baslik">Yeni Konut Kaydı</h2>
+					<form th:action="@{/addHouse}" th:object="${house}" method="post">
 
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Mahalle</div>
 						<br> <input class="bilgi form-control" type="text"
-							th:field="*{neighborhood}" name="neighborhood" required maxlength="50" /><br>
+							name="neighborhood" required maxlength="50" /><br>
 
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Sokak/Cadde</div>
-						<br> <input class="bilgi" type="text" th:field="*{street}"
-							name="street" required maxlength="50" /><br>
-						<div style="margin-left: 83px; font-weight: bolder; float: left;">Bina Numarası</div>
-						<br> <input class="bilgi" type="text" th:field="*{buildingNo}"
-							name="buildingNo" required maxlength="50" /><br>
-						<div style="margin-left: 83px; font-weight: bolder; float: left;">Kapı Numarası</div>
-						<br> <input class="bilgi" type="tel"
-							th:field="*{doorNumber}" name="doorNumber" required
-							maxlength="11" /><br>
-							<div style="margin-left: 83px; font-weight: bolder; float: left;">İlçe:</div>
-						<br> <input class="bilgi" type="tel"
-							th:field="*{town}" name="town" required
-							maxlength="11" /><br>
+						<br> <input class="bilgi" type="text" name="street" required
+							maxlength="50" /><br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Bina
+							Numarası</div>
+						<br> <input class="bilgi" type="text" name="buildingNo"
+							required maxlength="50" /><br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Kapı
+							Numarası</div>
+						<br> <input class="bilgi" type="text" name="doorNumber"
+							required maxlength="11" /><br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">İlçe:</div>
+						<br> <input class="bilgi" type="text" name="town" required
+							maxlength="" /><br>
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Şehir:</div>
-						<br> <input class="bilgi" type="tel"
-							th:field="*{city}" name="city" required
+						<br> <input class="bilgi" type="text" name="city" required
+							maxlength="30" /><br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Yapım
+							Yılı:</div>
+						<br> <input class="bilgi" type="text" name="year" required
 							maxlength="11" /><br>
-						
-							
-						
+
+
+
 
 						<button class="buton" type="submit" style="margin-left: -20px;">KAYDET</button>
 						<br> <br>
