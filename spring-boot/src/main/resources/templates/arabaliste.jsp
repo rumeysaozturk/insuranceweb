@@ -15,7 +15,7 @@
 	rel="stylesheet">
 <style>
 body {
-	background-color:#ffffff;
+	background-color: #ffffff;
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -49,68 +49,71 @@ th, td {
 	color: white;
 }
 
+ul {
+	padding: 0;
+	list-style: none;
+	background: #666666;
+}
 
- ul {
-        padding: 0;
-        list-style: none;
-        background: #666666;
-    }
-    ul li {
-        display: inline-block;
-        position: relative;
-        line-height: 21px;
-        text-align: left;
-    }
-    ul li a {
-        display: block;
-        padding: 8px 25px;
-        color: white;
-        text-decoration: none;
-    }
-    ul li a:hover {
-        color: #fff;
-        background: #939393;
-    }
-    ul li ul.dropdown {
-        min-width: 100%; /* Set width of the dropdown */
-        background: #black;
-        display: none;
-        position: absolute;
-        z-index: 999;
-        left: 0;
-    }
-    ul li:hover ul.dropdown {
-        display: block; /* Display the dropdown */
-    }
-    ul li ul.dropdown li {
-        display: block;
-    }
+ul li {
+	display: inline-block;
+	position: relative;
+	line-height: 21px;
+	text-align: left;
+}
+
+ul li a {
+	display: block;
+	padding: 8px 25px;
+	color: white;
+	text-decoration: none;
+}
+
+ul li a:hover {
+	color: #fff;
+	background: #939393;
+}
+
+ul li ul.dropdown {
+	min-width: 100%; /* Set width of the dropdown */
+	background: #black;
+	display: none;
+	position: absolute;
+	z-index: 999;
+	left: 0;
+}
+
+ul li:hover ul.dropdown {
+	display: block; /* Display the dropdown */
+}
+
+ul li ul.dropdown li {
+	display: block;
+}
+
 .active {
 	background-color: #7F7D7D;
 }
 </style>
 </head>
 <body>
-<ul>
-        
-        <li>
-            <a href="/">Kayıt ▾</a>
-            <ul class="dropdown">
-                <li><a href="kullanıcı">Kişi Kaydı</a></li>
-                <li><a href="araba">Araba kaydı</a></li>
-                <li><a href="house">Konut Kaydı</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Listeler</a>
-        <ul class="dropdown">
-                <li><a href="kullanıcıliste">Kişi Listesi</a></li>
-                <li><a href="arabaliste">Araba Listesi</a></li>
-                <li><a href="konutliste">Konut Listesi</a></li>
-            </ul>
-        </li>
-        <li><a href="arabasigorta">Araba Sigortası</a></li>
-    </ul>
-	
+	<ul>
+
+		<li><a href="/">Kayıt ▾</a>
+			<ul class="dropdown">
+				<li><a href="kullanıcı">Kişi Kaydı</a></li>
+				<li><a href="araba">Araba kaydı</a></li>
+				<li><a href="house">Konut Kaydı</a></li>
+			</ul></li>
+		<li><a href="#">Listeler</a>
+			<ul class="dropdown">
+				<li><a href="kullaniciliste">Kişi Listesi</a></li>
+				<li><a href="arabaliste">Araba Listesi</a></li>
+				<li><a href="konutliste">Konut Listesi</a></li>
+			</ul></li>
+		<li><a href="arabasigorta">Araba Sigortası</a></li>
+	</ul>
+
 	<div class="container">
 		<div class="col-lg-12 col-md-12 col-xs-12">
 			<div class="row">
@@ -124,7 +127,8 @@ th, td {
 							<th style="width: 100px;">Model</th>
 							<th style="width: 100px;">Yıl</th>
 							<th style="width: 100px;">Kaza Kaydı</th>
-
+							<th style="width: 100px;"></th>
+							<th style="width: 100px;"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -134,6 +138,8 @@ th, td {
 							<td th:text="${car.model}"></td>
 							<td th:text="${car.year}"></td>
 							<td th:text="${car.accident}"></td>
+							<td><a th:href="@{'updateCar/'+${car.carId}}"class="btn btn-info">Update</a></td>
+							<td><a th:href="@{'deleteCar/'+${car.carId}}"class="btn btn-danger">Delete</a></td>
 
 						</tr>
 
@@ -141,9 +147,7 @@ th, td {
 					</tbody>
 
 				</table>
-				<br>
-				<br>
-				<br>
+				<br> <br> <br>
 			</div>
 
 		</div>
