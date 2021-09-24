@@ -124,7 +124,7 @@ select {
         </li>
         <li><a href="#">Listeler</a>
         <ul class="dropdown">
-                <li><a href="kullanıcıliste">Kişi Listesi</a></li>
+                <li><a href="kullaniciliste">Kişi Listesi</a></li>
                 <li><a href="arabaliste">Araba Listesi</a></li>
                 <li><a href="konutliste">Konut Listesi</a></li>
             </ul>
