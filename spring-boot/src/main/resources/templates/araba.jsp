@@ -124,7 +124,7 @@ select {
         </li>
         <li><a href="#">Listeler</a>
         <ul class="dropdown">
-                <li><a href="kullanıcıliste">Kişi Listesi</a></li>
+                <li><a href="kullaniciliste">Kişi Listesi</a></li>
                 <li><a href="arabaliste">Araba Listesi</a></li>
                 <li><a href="konutliste">Konut Listesi</a></li>
             </ul>
@@ -137,26 +137,44 @@ select {
 			<div class="row">
 				<div class="kayıt" style="text-align: center;">
 					<h2 class="baslik">Yeni Araba Kaydı</h2>
-					<form th:action="@{/addCar}" th:object="${car}" method="post">
-
+					
+					<form th:action="@{/addCar}" th:object="${arabaKayitForm}" method="post">
+					
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Plaka</div>
 						<br> <input class="bilgi " type="text"
 							name="plaque" required maxlength="50" /><br>
 
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Marka:</div>
-						<br> <input class="bilgi" type="text" name="brand" required
-							maxlength="50" /><br>
+						<br> 
+						<select class="bilgi"style="margin-left:62px;width:167px;" th:field="*{brand}"   >
+							<option name="brand"  required type="text" th:each="brand: ${carBrands}" th:value="${brand.brandId}" th:text="${brand.brand}">
+						
+						</select> <br>
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Model:</div>
-						<br> <input class="bilgi" type="text" name="model" required
-							maxlength="50" /><br>
+						<br>
+						<select class="bilgi"style="margin-left:62px;width:167px;" th:field="*{model}">
+							<option name="model" required  th:each="model: ${carModels}" th:value="${model.modelId}" th:text="${model.model}">
+						
+						</select>
+						
+							
+						<br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Renk:</div>
+						<br>
+						<select class="bilgi"style="margin-left:62px;width:167px;" th:field="*{color}"  >
+							<option name="color" required  th:each="color: ${carColors}" th:value="${color.colorId}" th:text="${color.color}" >
+						
+						</select>
+						
+							
+						<br>
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Yıl:</div>
 						<br> <input class="bilgi" type="tel" name="year" required
 							maxlength="11" /><br>
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Kaza
 							Kaydı:</div>
-						<br> <input type="radio" th:field="*{accident}"
-							name="accident" value="V" />Var <input type="radio"
-							name="accident" th:field="*{accident}" value="Y" />Yok<br>
+						<br> <input type="radio" th:field="*{accident}" name="accident" value="V" />Var 
+							<input type="radio" name="accident" th:field="*{accident}" value="Y" />Yok<br>
 
 
 
