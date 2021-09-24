@@ -103,7 +103,7 @@ th, td {
         </li>
         <li><a href="#">Listeler</a>
         <ul class="dropdown">
-                <li><a href="kullanıcıliste">Kişi Listesi</a></li>
+                <li><a href="kullaniciliste">Kişi Listesi</a></li>
                 <li><a href="arabaliste">Araba Listesi</a></li>
                 <li><a href="konutliste">Konut Listesi</a></li>
             </ul>
@@ -126,7 +126,8 @@ th, td {
 							<th style="width: 100px;">İlçe</th>
 							<th style="width: 100px;">Şehir</th>
 							<th style="width: 100px;">Yapım Yılı</th>
-							
+							<th style="width: 100px;"></th>
+							<th style="width: 100px;"></th>
 
 						</tr>
 					</thead>
@@ -139,6 +140,8 @@ th, td {
 							<td th:text="${house.town}"></td>
 							<td th:text="${house.city}"></td>
 							<td th:text="${house.year}"></td>
+							<td><a th:href="@{'updateHouse/'+${house.houseId}}"class="btn btn-info">Update</a></td>
+							<td><a th:href="@{'deleteHouse/'+${house.houseId}}"class="btn btn-danger">Delete</a></td>
 
 						</tr>
 
