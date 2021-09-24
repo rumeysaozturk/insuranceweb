@@ -15,14 +15,14 @@
 	rel="stylesheet">
 <style>
 body {
-	background-color:#ffffff;
+	background-color: #ffffff;
 	font-family: 'Open Sans', sans-serif;
 }
 
 table {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
+
+	margin: 150px auto;
+	position:auto;
 	margin-top: 50px;
 }
 
@@ -32,132 +32,144 @@ table, th, td {
 }
 
 th, td {
-	padding: 15px;
+	padding: 10px;
 	text-align: left;
 }
 
-#t01 tr:nth-child(even) {
-	background-color: #eee;
-}
 
-#t01 tr:nth-child(odd) {
-	background-color: #fff;
+#t01 td:nth-child(odd) {
+	background-color: #A9A7A7;
 }
 
 #t01 th {
-	background-color: #7F7D7D;
+	background-color:#7F7D7D ;
 	color: white;
 }
 
+ul {
+	padding: 0;
+	list-style: none;
+	background: #666666;
+}
 
- ul {
-        padding: 0;
-        list-style: none;
-        background: #666666;
-    }
-    ul li {
-        display: inline-block;
-        position: relative;
-        line-height: 21px;
-        text-align: left;
-    }
-    ul li a {
-        display: block;
-        padding: 8px 25px;
-        color: white;
-        text-decoration: none;
-    }
-    ul li a:hover {
-        color: #fff;
-        background: #939393;
-    }
-    ul li ul.dropdown {
-        min-width: 100%; /* Set width of the dropdown */
-        background: #black;
-        display: none;
-        position: absolute;
-        z-index: 999;
-        left: 0;
-    }
-    ul li:hover ul.dropdown {
-        display: block; /* Display the dropdown */
-    }
-    ul li ul.dropdown li {
-        display: block;
-    }
+ul li {
+	display: inline-block;
+	position: relative;
+	line-height: 21px;
+	text-align: left;
+}
+
+ul li a {
+	display: block;
+	padding: 8px 25px;
+	color: white;
+	text-decoration: none;
+}
+
+ul li a:hover {
+	color: #fff;
+	background: #939393;
+}
+
+ul li ul.dropdown {
+	min-width: 100%; /* Set width of the dropdown */
+	background: #black;
+	display: none;
+	position: absolute;
+	z-index: 999;
+	left: 0;
+}
+
+ul li:hover ul.dropdown {
+	display: block; /* Display the dropdown */
+}
+
+ul li ul.dropdown li {
+	display: block;
+}
+
 .active {
 	background-color: #7F7D7D;
 }
 </style>
 </head>
 <body>
-<ul>
-        
-        <li>
-            <a href="/">Kayıt ▾</a>
-            <ul class="dropdown">
-                <li><a href="kullanıcı">Kişi Kaydı</a></li>
-                <li><a href="araba">Araba kaydı</a></li>
-                <li><a href="house">Konut Kaydı</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Listeler</a>
-        <ul class="dropdown">
-                <li><a href="kullanıcıliste">Kişi Listesi</a></li>
-                <li><a href="arabaliste">Araba Listesi</a></li>
-                <li><a href="konutliste">Konut Listesi</a></li>
-            </ul>
-        </li>
-        <li><a href="arabasigorta">Araba Sigortası</a></li>
-    </ul>
-	
+	<ul>
+
+		<li><a href="/">Kayıt ▾</a>
+			<ul class="dropdown">
+				<li><a href="kullanıcı">Kişi Kaydı</a></li>
+				<li><a href="araba">Araba kaydı</a></li>
+				<li><a href="house">Konut Kaydı</a></li>
+			</ul></li>
+		<li><a href="#">Listeler</a>
+			<ul class="dropdown">
+				<li><a href="kullaniciliste">Kişi Listesi</a></li>
+				<li><a href="arabaliste">Araba Listesi</a></li>
+				<li><a href="konutliste">Konut Listesi</a></li>
+			</ul></li>
+		<li><a href="arabasigorta">Araba Sigortası</a></li>
+	</ul>
+
 	<div class="container">
 		<div class="col-lg-12 col-md-12 col-xs-12">
 			<div class="row">
 
 				<table id="t01"
-					style="text-align: center; float: right; margin-right: 50px;">
-					<thead>
-						<tr>
-							<th style="width: 100px;">Ad</th>
-							<th style="width: 100px;">Soyad</th>
-							<th style="width: 100px;">TC</th>
-							<th style="width: 100px;">Telefon Numarası</th>
-							
-							<th style="width: 100px;">Araç Plakası</th>
-							<th style="width: 100px;">Araç Markası</th>
-							<th style="width: 100px;">Araç Modeli</th>
-							<th style="width: 100px;">Araç Yılı</th>
-							<th style="width: 100px;">Araç Kaza Kaydı</th>
-							<th style="width: 100px;">Teklif</th>
-							
-							
-
-						</tr>
-					</thead>
+					style="text-align: center;">
+					
 					<tbody>
 						<tr>
-							<td th:text="${user.name}"></td>
-							<td th:text="${user.surname}"></td>
-							<td th:text="${user.tc}"></td>
-							<td th:text="${user.phoneNumber}"></td>
-							<td th:text="${car.plaque}"></td>
-							<td th:text="${car.brand}"></td>
-							<td th:text="${car.model}"></td>
-							<td th:text="${car.year}"></td>
-							<td th:text="${car.accident}"></td>
-							<td th:text="${as}"></td>
-							
-
+							<td style="width:200px;">AD</td>
+							<td style="width:250px;"th:text="${user.name}"></td>
 						</tr>
-
+						<tr>
+							<td>SOYAD</td>
+							<td th:text="${user.surname}"></td>
+						</tr>
+						<tr>
+							<td>TC</td>
+							<td th:text="${user.tc}"></td>
+						</tr>
+						<tr>
+							<td>TELEFON NUMARASI</td>
+							<td th:text="${user.phoneNumber}"></td>
+						</tr>
+						<tr>
+							<td>PLAKA</td>
+							<td th:text="${car.plaque}"></td>
+						</tr>
+						<tr>
+							<td>MARKA</td>
+							<td th:text="${car.brand}"></td>
+						</tr>
+						<tr>
+							<td>MODEL</td>
+							<td th:text="${car.model}"></td>
+						</tr>
+						<tr>
+							<td>RENK</td>
+							<td th:text="${car.color}"></td>
+						</tr>
+						<tr>
+							<td>YIL</td>
+							<td th:text="${car.year}"></td>
+						</tr>
+						<tr>
+							<td>KAZA KAYDI</td>
+							<td th:text="${car.accident}"></td>
+						</tr>
+						<tr>
+							<td>SİGORTA TEKLİFİ</td>
+							<td th:text="${as}"></td>
+						</tr>
+						
+						
 
 					</tbody>
 
 				</table>
-				<br>
-				<br>
-				<br>
+				<br> <br> <br>
 			</div>
 
 		</div>
