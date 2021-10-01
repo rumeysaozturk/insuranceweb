@@ -169,8 +169,8 @@ select {
 							
 						<br>
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Yıl:</div>
-						<br> <input class="bilgi" type="tel" name="year" required
-							maxlength="11" /><br>
+						<br> <input class="bilgi" type="tel" name="year" required 
+							minlength="4" maxlength="4" /><br>
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Kaza
 							Kaydı:</div>
 						<br> <input type="radio" th:field="*{accident}" name="accident" value="V" />Var 
