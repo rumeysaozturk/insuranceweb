@@ -15,36 +15,55 @@
 	rel="stylesheet">
 <style>
 body {
-	background-color:#ffffff;
+	background-color: #ffffff;
 	font-family: 'Open Sans', sans-serif;
 }
 
-table {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 50px;
+select {
+	width: 45%;
+	box-sizing: border-box;
 }
 
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
+.baslik {
+	text-align: center;
+	padding: 30px;
+	font-weight: normal;
 }
 
-th, td {
-	padding: 15px;
-	text-align: left;
+.kayıt {
+	margin: 50px auto;
+	position: relative;
+	border-radius: 10px;
+	background: #ECEDF3;
+	width: 400px;
+	height: 550px;
+	border-style: ridge;
 }
 
-#t01 tr:nth-child(even) {
-	background-color: #eee;
+.bilgi {
+	border-style: solid;
+	border-width: 2px;
+	border-color: grey;
+	margin-left: 60px;
 }
 
-#t01 tr:nth-child(odd) {
-	background-color: #fff;
+.buton {
+	background-color: #555555;
+	color: white;
+	border: 2px solid #555555;
+	padding: 12px 45px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 5px;
 }
 
-#t01 th {
+.buton:hover {
 	background-color: #7F7D7D;
 	color: white;
 }
@@ -85,13 +104,16 @@ th, td {
     ul li ul.dropdown li {
         display: block;
     }
+
 .active {
 	background-color: #7F7D7D;
 }
 </style>
 </head>
 <body>
-<ul>
+
+	<div class="container">
+		<ul>
         
         <li>
             <a href="/">Kayıt ▾</a>
@@ -110,71 +132,51 @@ th, td {
         </li>
         <li><a href="arabasigorta">Araba Sigortası</a></li>
     </ul>
-	
-	<div class="container">
 		<div class="col-lg-12 col-md-12 col-xs-12">
 			<div class="row">
+				<div class="kayıt" style="text-align: center;">
+					<h2 class="baslik">Yeni Konut Kaydı</h2>
+					<form th:action="@{/addHouse}" th:object="${house}" method="post">
 
-				<table id="t01"
-					style="text-align: center; float: right; margin-right: 50px;">
-					<thead>
-						<tr>
-							<th style="width: 100px;">Mahalle</th>
-							<th style="width: 100px;">Cadde/Sokak</th>
-							<th style="width: 100px;">Bina Numarası </th>
-							<th style="width: 100px;">Kapı Numarası</th>
-							<th style="width: 100px;">İlçe</th>
-							<th style="width: 100px;">Şehir</th>
-							<th style="width: 100px;">Yapım Yılı</th>
-							<th style="width: 100px;"></th>
-							<th style="width: 100px;"></th>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Mahalle</div>
+						<br> <input class="bilgi form-control" type="text"
+							name="neighborhood" required minlength="3" maxlength="50" /><br>
 
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="house : ${listHouse }">
-							<td th:text="${house.neighborhood}"></td>
-							<td th:text="${house.street}"></td>
-							<td th:text="${house.buildingNo}"></td>
-							<td th:text="${house.doorNumber}"></td>
-							<td th:text="${house.town}"></td>
-							<td th:text="${house.city}"></td>
-							<td th:text="${house.year}"></td>
-							<td><a th:href="@{'updateHouse/'+${house.houseId}}"class="btn btn-info">Update</a></td>
-							<td><a th:href="@{'deleteHouse/'+${house.houseId}}"class="btn btn-danger">Delete</a></td>
-
-						</tr>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Sokak/Cadde</div>
+						<br> <input class="bilgi" type="text" name="street" required
+							minlength="3" maxlength="50" /><br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Bina
+							Numarası</div>
+						<br> <input class="bilgi" type="text" name="buildingNo"
+							required maxlength="50" /><br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Kapı
+							Numarası</div>
+						<br> <input class="bilgi" type="text" name="doorNumber"
+							required maxlength="11" /><br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">İlçe:</div>
+						<br> <input class="bilgi" type="text" name="town" required
+							minlength="3" maxlength="50" /><br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Şehir:</div>
+						<br> <input class="bilgi" type="text" name="city" required
+							minlength="3" maxlength="30" /><br>
+						<div style="margin-left: 83px; font-weight: bolder; float: left;">Yapım
+							Yılı:</div>
+						<br> <input class="bilgi" type="text" name="year" required
+							minlength="4" maxlength="4" /><br>
 
 
-					</tbody>
 
-				</table>
-				<br>
-				<br>
-				<br>
+
+						<button class="buton" type="submit" style="margin-left: -20px;">KAYDET</button>
+						<br> <br>
+					</form>
+				</div>
 			</div>
-
 		</div>
 	</div>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
+
 
 
 </body>
