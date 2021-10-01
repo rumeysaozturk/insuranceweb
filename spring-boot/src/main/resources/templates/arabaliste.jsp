@@ -125,6 +125,7 @@ ul li ul.dropdown li {
 							<th style="width: 100px;">Plaka</th>
 							<th style="width: 100px;">Marka</th>
 							<th style="width: 100px;">Model</th>
+							<th style="width: 100px;">Renk</th>
 							<th style="width: 100px;">Yıl</th>
 							<th style="width: 100px;">Kaza Kaydı</th>
 							<th style="width: 100px;"></th>
@@ -136,9 +137,10 @@ ul li ul.dropdown li {
 							<td th:text="${car.plaque}"></td>
 							<td th:text="${car.brand}"></td>
 							<td th:text="${car.model}"></td>
+							<td th:text="${car.color}"></td>
 							<td th:text="${car.year}"></td>
 							<td th:text="${car.accident}"></td>
-							<td><a th:href="@{'updateCar/'+${car.carId}}"class="btn btn-info">Update</a></td>
+							<td><a th:href="@{'UpdateCarPage/'+${car.carId}}"class="btn btn-info">Update</a></td>
 							<td><a th:href="@{'deleteCar/'+${car.carId}}"class="btn btn-danger">Delete</a></td>
 
 						</tr>
