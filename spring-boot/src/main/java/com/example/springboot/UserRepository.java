@@ -1,5 +1,7 @@
 package com.example.springboot;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -16,6 +18,16 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query(value="select * from users u where u.user_id=:id",nativeQuery=true)
 	User findByIdUser(int id);
-	//@Query(value="update users u set u.name:name")
-//	void updateUser(int id);
+	
+	@Query(value="select tc from users u where u.user_id=:id",nativeQuery=true)
+	String findByIdTc(int id);
+	
+	@Query(value="select phone_number from users u where u.user_id=:id",nativeQuery=true)
+	String findByIdPhone(int id);
+	
+	@Query(value="select tc from users ",nativeQuery=true)
+	List<String> findTc();
+	
+	@Query(value="select phone_number from users ",nativeQuery=true)
+	List<String> findPhone();
 }
