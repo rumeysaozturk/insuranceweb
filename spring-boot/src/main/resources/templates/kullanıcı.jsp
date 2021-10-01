@@ -138,20 +138,20 @@ body {
 
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Ad:</div>
 						<br> <input class="bilgi form-control" type="text"
-							th:field="*{name}" name="name" required maxlength="50" /><br>
+							th:field="*{name}" name="name" required minlength="3" maxlength="30" /><br>
 
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Soyad:</div>
 						<br> <input class="bilgi" type="text" th:field="*{surname}"
-							name="surname" required maxlength="50" /><br>
+							name="surname" required minlength="2" maxlength="30" /><br>
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Tc
 							Kimlik No:</div>
 						<br> <input class="bilgi" type="text" th:field="*{tc}"
-							name="surname" required maxlength="50" /><br>
+							name="surname" required minlength="11" maxlength="11"/><br>
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Telefon
 							Numarası:</div>
 						<br> <input class="bilgi" type="tel"
 							th:field="*{phoneNumber}" name="phoneNumber" required
-							maxlength="11" /><br>
+							minlength="11" maxlength="11" /><br>
 
 						<div style="margin-left: 83px; font-weight: bolder; float: left;">Cinsiyet:</div>
 						<br> <input type="radio" th:field="*{gender}" name="gender"
