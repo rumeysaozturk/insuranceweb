@@ -141,7 +141,7 @@ ul li ul.dropdown li {
 							<td th:text="${user.phoneNumber}"></td>
 							<td th:text="${user.gender}"></td>
 							<td th:text="${user.date}"></td>
-							<td><a th:href="@{'updateUser/'+${user.userId}}"class="btn btn-info">Update</a></td>
+							<td><a th:href="@{'updateUserPage/'+${user.userId}}"class="btn btn-info">Update</a></td>
 							<td><a th:href="@{'deleteUser/'+${user.userId}}"class="btn btn-danger">Delete</a></td>
 
 						</tr>
