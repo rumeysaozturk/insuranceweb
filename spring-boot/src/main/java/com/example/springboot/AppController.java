@@ -8,12 +8,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +46,8 @@ public class AppController {
 	@Autowired
 	private ArabaKayıtFormRepository akfRepo;
 
+	
+	
 	@GetMapping("/")
 	public String index(Model model) {
 		return "index";
@@ -119,28 +125,86 @@ public class AppController {
 		return "redirect:/konutliste";
 	}
 	
-	@RequestMapping(value="/updateUser/{id}",method = RequestMethod.GET)
-	public String updateUser(@PathVariable(name = "id") int id,Model model) {
-		User user = userRepo.findByIdUser(id);
+	@GetMapping("/updateUserPage/{id}")
+	public String updateUserPage(@PathVariable(name = "id") int id,Model model) {
+		
+		User user = userRepo.getById(id);
 		model.addAttribute("user",user);
 		
 		
-		return "redirect:/updateUser/{id}";
+		return "updateUserPage";
+	}
+	
+	@GetMapping("/UpdateCarPage/{id}")
+	public String updateCarPage(@PathVariable(name = "id") int id,Model model) {
+		model.addAttribute("arabaKayitForm", new ArabaKayıtForm());
+		List<CarBrands> listCarBrands = carBrandRepo.findAll();
+		model.addAttribute("carBrands", listCarBrands);
+		List<CarModel> listModels = modelRepo.findAll();
+		model.addAttribute("carModels", listModels);
+		List<CarColors> listColors = colorRepo.findAll();
+		model.addAttribute("carColors", listColors);
+		Car car = carRepo.getById(id);
+		model.addAttribute("car",car);
+		
+		
+		return "UpdateCarPage";
+	}
+	@PostMapping("/updateCar")
+	public String updateCar(@RequestParam(name = "plaque", required = false) String plaque, @RequestParam(name = "brand", required = false) String brand,
+			@RequestParam(name = "model", required = false) String model, @RequestParam(name = "color", required = false) String color,@RequestParam(name = "year", required = false) Long year, @RequestParam(name = "accident", required = false) char accident) {
+		Car car = carRepo.findByPlaqueCar(plaque);
+		
+		int brandId = Integer.parseInt(brand);
+		String brandName = carBrandRepo.findByBrandId(brandId);
+		int modelId = Integer.parseInt(model);
+		String modelName = modelRepo.findByModelId(modelId);
+		int colorId = Integer.parseInt(color);
+		String colorName = colorRepo.findByColorId(colorId);
+		
+		car.setPlaque(plaque);
+		car.setBrand(brandName);
+		car.setModel(modelName);
+		car.setColor(colorName);
+		car.setYear(year);
+		car.setAccident(accident);
+		carRepo.save(car);
+		
+		
+		return "redirect:/arabaliste";
+	}
+	@PostMapping("/updateUser")
+	public String updateUser(@RequestParam(name = "tc", required = false) String tc, @RequestParam(name = "name", required = false) String name,
+			@RequestParam(name = "surname", required = false) String surname, @RequestParam(name = "phoneNumber", required = false) String phone,@RequestParam(name = "gender", required = false) char gender, @RequestParam(name = "date", required = false) java.sql.Date date) {
+		User user = userRepo.findByTcUser(tc);
+		user.setName(name);
+		user.setSurname(surname);
+		user.setTc(tc);
+		user.setPhoneNumber(phone);
+		user.setGender(gender);
+		user.setDate(date);
+		userRepo.save(user);
+		
+		
+		return "redirect:/kullaniciliste";
 	}
 
 	@RequestMapping(value = "/process_register", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("User") User user) {
-
-		if (!(userRepo.findAll().contains(user))) {
-
+	public String addUser(@Valid @ModelAttribute("User") User user, Model model,BindingResult bindingResult) {
+	//	String tc= userRepo.findByIdTc(id);
+	//	String phone =userRepo.findByIdPhone(id);
+		if (userRepo.findTc().contains(user.getTc())||userRepo.findPhone().contains(user.getPhoneNumber())||bindingResult.hasErrors()) {
+			model.addAttribute("message", "Kullanıcı mevcut!");
+			
+			return "redirect:/";
+			
+		} else {
 			userRepo.save(user);
 
-			return "redirect:/";
-		} else {
-
+			return "redirect:/kullaniciliste";
 		}
 
-		return "redirect:/";
+		
 	}
 
 	@RequestMapping(value = "/addCarInsurance", method = RequestMethod.POST)
@@ -149,7 +213,7 @@ public class AppController {
 
 		User userR = userRepo.findByTcUser(tc);
 		Car carR = carRepo.findByPlaqueCar(plaque);
-		if (carService.carInsurance(arabaSigorta, tc, plaque)) {
+		if (carService.carInsurance(arabaSigorta, tc, plaque,model)) {
 			model.addAttribute("car", carR);
 			model.addAttribute("user", userR);
 			arabaSigortaRepo.save(arabaSigorta);
@@ -179,10 +243,10 @@ public class AppController {
 		car.setYear(akf.getYear());
 		car.setAccident(akf.getAccident());
 
-		if (!(carRepo.findAll().contains(car))) {
+		if (!(carRepo.findPlaque().contains(akf.getPlaque()))) {
 
 			carRepo.save(car);
-			return "redirect:/";
+			return "redirect:/arabaliste";
 		} else {
 
 		}
